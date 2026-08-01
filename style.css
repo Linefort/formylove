@@ -1,0 +1,260 @@
+/* --- ОСНОВНЫЕ СТИЛИ ТЕТРАДИ И АДАПТИВА ПОД ТЕЛЕФОН --- */
+:root {
+    --paper: #fdfbf7;
+    --line-color: #e0e6ed;
+    --margin-line: #ff99a8;
+    --text-ink: #2b2b2b;
+    --highlighter: rgba(255, 182, 193, 0.45);
+    --pink-marker: #ff4d8d;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--paper);
+    background-image: repeating-linear-gradient(transparent, transparent 31px, var(--line-color) 32px);
+    background-attachment: local;
+    font-family: 'Neucha', 'Caveat', cursive;
+    color: var(--text-ink);
+    overflow-x: hidden;
+    position: relative;
+    font-size: 1.35rem;
+    line-height: 1.6;
+}
+
+/* Поля тетрадного листа (красная линия) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 8%;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--margin-line);
+    z-index: 1;
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 1.25rem;
+    }
+    body::before {
+        left: 20px; /* Поля ближе к краю для мобилок */
+    }
+}
+
+.notebook-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px 100px 12%;
+    position: relative;
+    z-index: 5; /* Контент поверх фоновых котиков */
+}
+
+@media (max-width: 600px) {
+    .notebook-container {
+        padding: 30px 15px 80px 35px;
+    }
+}
+
+h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 3.2rem;
+    color: var(--pink-marker);
+    text-align: center;
+    margin-bottom: 25px;
+    transform: rotate(-1.5deg);
+    line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+.doodle-heart {
+    color: var(--pink-marker);
+    font-family: 'Caveat', cursive;
+}
+
+.text-block {
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+.signature {
+    text-align: right;
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    color: var(--pink-marker);
+    margin-top: 10px;
+}
+
+.highlight {
+    background-color: var(--highlighter);
+    padding: 0 6px;
+    border-radius: 4px;
+}
+
+/* --- АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ --- */
+.hidden-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.show-element {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- ПОЛАРОИДЫ БЕЗ ПОДПИСЕЙ --- */
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 35px 0;
+}
+
+.polaroid {
+    background: #fff;
+    padding: 10px 10px 12px 10px;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.12);
+    position: relative;
+    width: 220px;
+    border-radius: 2px;
+}
+
+@media (max-width: 600px) {
+    .polaroid {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(2.5deg) translateY(0);
+}
+.polaroid.hidden-element:nth-child(even) {
+    transform: rotate(2.5deg) translateY(30px);
+}
+
+.polaroid:nth-child(odd) {
+    transform: rotate(-2.5deg) translateY(0);
+}
+.polaroid.hidden-element:nth-child(odd) {
+    transform: rotate(-2.5deg) translateY(30px);
+}
+
+.polaroid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid #f0f0f0;
+    display: block;
+    border-radius: 2px;
+}
+
+/* Скотч поверх фото */
+.tape {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 80px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-left: 2px dashed rgba(0,0,0,0.1);
+    border-right: 2px dashed rgba(0,0,0,0.1);
+}
+
+.tape-tilt {
+    transform: translateX(-50%) rotate(3deg);
+}
+
+/* --- РИСОВАШКИ И ДЕКОР --- */
+.doodle {
+    position: absolute;
+    font-family: 'Caveat', cursive;
+    color: var(--pink-marker);
+    font-size: 1.6rem;
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+.doodle-1 { top: 20px; right: 5%; transform: rotate(12deg); }
+.doodle-2 { top: 350px; left: -5px; transform: rotate(-20deg); font-size: 2.2rem; }
+.doodle-3 { top: 650px; right: 2%; transform: rotate(8deg); }
+.doodle-4 { top: 950px; left: 0px; transform: rotate(-10deg); }
+.doodle-5 { top: 1250px; right: 5%; transform: rotate(15deg); }
+
+@media (max-width: 768px) {
+    .doodle-2, .doodle-3, .doodle-4, .doodle-5 {
+        display: none;
+    }
+    .doodle-1 {
+        top: 15px;
+        right: 15px;
+        font-size: 1.2rem;
+    }
+}
+
+/* --- ФОНОВЫЕ БЕГАЮЩИЕ КОТИКИ (JPG/PNG ПО ВСЕЙ СТРАНИЦЕ) --- */
+.bg-cats-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.running-cat {
+    position: absolute;
+    opacity: 0.35;
+}
+
+.running-cat img {
+    width: 100px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+    .running-cat img {
+        width: 75px; 
+    }
+}
+
+@keyframes runRight {
+    0% { left: -120px; transform: scaleX(-1) translateY(0); }
+    50% { transform: scaleX(-1) translateY(-12px); }
+    100% { left: 110vw; transform: scaleX(-1) translateY(0); }
+}
+
+@keyframes runLeft {
+    0% { right: -120px; transform: scaleX(1) translateY(0); }
+    50% { transform: scaleX(1) translateY(-12px); }
+    100% { right: 110vw; transform: scaleX(1) translateY(0); }
+}
+
+.cat-pos-1 { top: 100px; animation: runRight 11s linear infinite; }
+.cat-pos-2 { top: 450px; animation: runLeft 14s linear infinite 2s; }
+.cat-pos-3 { top: 800px; animation: runRight 12s linear infinite 5s; }
+.cat-pos-4 { top: 1150px; animation: runLeft 16s linear infinite 1s; }
+.cat-pos-5 { top: 1500px; animation: runRight 13s linear infinite 4s; }
+.cat-pos-6 { top: 1850px; animation: runLeft 15s linear infinite 7s; }

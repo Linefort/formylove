@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Для моей любимки :33</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Neucha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Фоновые котики, свободно передвигающиеся по всей высоте страницы -->
+    <div class="bg-cats-container">
+        <div class="running-cat cat-pos-1">
+            <img src="cats/cat1.jpg" alt="кот">
+        </div>
+        <div class="running-cat cat-pos-2">
+            <img src="cats/cat2.jpg" alt="кот">
+        </div>
+        <div class="running-cat cat-pos-3">
+            <img src="cats/cat3.jpg" alt="кот">
+        </div>
+        <div class="running-cat cat-pos-4">
+            <img src="cats/cat4.jpg" alt="кот">
+        </div>
+        <div class="running-cat cat-pos-5">
+            <img src="cats/cat1.jpg" alt="кот">
+        </div>
+        <div class="running-cat cat-pos-6">
+            <img src="cats/cat2.jpg" alt="кот">
+        </div>
+    </div>
+
+    <!-- Тетрадный лист с контентом -->
+    <div class="notebook-container">
+        
+        <!-- Забавные рисовашки и милые заметки -->
+        <div class="doodle doodle-1">Люблю тебя! ♡</div>
+        <div class="doodle doodle-2">🐾</div>
+        <div class="doodle doodle-3">Мяу! :3</div>
+        <div class="doodle doodle-4">Моя кошечка ✨</div>
+        <div class="doodle doodle-5">Ты лучше всех! 💖</div>
+
+        <h1 class="hidden-element">С Днем Рождения, Настяшка! <span class="doodle-heart">♡</span></h1>
+
+        <div class="text-block hidden-element">
+            Любимая моя <span class="highlight">кошечка</span>, с твоим 18-летием тебя, ангелочек мой!!! :333
+        </div>
+
+        <div class="text-block hidden-element" style="transition-delay: 0.2s;">
+            Я просто безумно благодарен судьбе и твоим родителям за то, что ты появилась в моей жизни. Ты самая красивая на свете, мой <span class="highlight">добряш</span>, и я вообще не представляю этот мир без тебя 🫂💗
+        </div>
+
+        <!-- Декоративные полароиды БЕЗ подписей -->
+        <div class="photo-gallery">
+            <div class="polaroid hidden-element">
+                <div class="tape"></div>
+                <img src="love/love1.jpg" alt="наше фото">
+            </div>
+            
+            <div class="polaroid hidden-element" style="transition-delay: 0.3s;">
+                <div class="tape tape-tilt"></div>
+                <img src="love/love2.jpg" alt="наше фото">
+            </div>
+        </div>
+
+        <div class="text-block hidden-element">
+            Харашо, котенок мой, слушай сюда :33 Желаю тебе простого, но самого огромного человеческого счастья. Чтобы здоровье было крепким-крепким, и никакие тревоги тебя вообще не беспокоили. Пусть рядом всегда будут только самые верные и хорошие люди, с которыми можно и посмеяться, и погрустить. А я всегда буду рядом, чтобы поддержать тебя в любую трудную минуту, разделить все твои эмоции и интересы!
+        </div>
+
+        <div class="text-block hidden-element">
+            Моя <span class="highlight">любимка</span>, пусть все твои самые заветные мечты сбываются, а ошибки если и будут, то сразу исчезают :333 
+        </div>
+
+        <!-- Еще фото без подписи -->
+        <div class="photo-gallery">
+            <div class="polaroid hidden-element">
+                <div class="tape"></div>
+                <img src="love/love3.jpg" alt="наше фото">
+            </div>
+        </div>
+
+        <div class="text-block hidden-element">
+            Я обещаю всегда-всегда поддерживать тебя во всем, ценить, носить на руках, слушать, слышать и безумно любить с каждым днем все сильнее. Ты не просто моя девушка, ты мой самый лучший друг и самый родной человек. Спасибо тебе за каждую секундочку вместе, за твою улыбку и за то счастье, которое ты мне даришь каждый день.
+        </div>
+
+        <div class="text-block hidden-element">
+            У нас с тобой впереди самое крутое и счастливое будущее, я тебе это обещаю! :33 <br>
+            Оставайся всегда такой же настоящей, искренней и невероятной. <br><br>
+            Я тебя очень, очень, очень сильно люблю!!! ❤️❤️❤️
+        </div>
+        
+        <div class="text-block signature hidden-element">
+            Целую, обнимаю, твой котик :333
+        </div>
+
+    </div>
+
+    <!-- Скрипт для анимации появления текста -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-element');
+                        // Можно отключить наблюдение после появления, чтобы анимация проигрывалась 1 раз
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.1, // Элемент начнет появляться, когда 10% его высоты покажется на экране
+                rootMargin: "0px 0px -50px 0px" // Небольшой отступ, чтобы анимация начиналась чуть позже
+            });
+
+            const hiddenElements = document.querySelectorAll('.hidden-element');
+            hiddenElements.forEach((el) => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
